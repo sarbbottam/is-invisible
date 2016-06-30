@@ -19,15 +19,15 @@ npm i is-invisible --save
 ```
 
 ```js
-const inInvisible = require('is-invisible');
+const isInvisible = require('is-invisible');
 
 // either
-Element.protoType.inInvisible = function() {
-  return inInvisible(this);
+Element.protoType.isInvisible = function() {
+  return isInvisible(this);
 }
 
 // or
-inInvisible(node);
+isInvisible(node);
 ```
 
 ## Contributing
