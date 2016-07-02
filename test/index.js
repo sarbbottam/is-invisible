@@ -13,6 +13,21 @@ describe('is-invisible', () => {
       <div></div>
     </div>
 
+    <div style="height:100px;overflow:hidden">
+      <div style="height:50px"></div>
+      <div style="height:50px"></div>
+      <div style="height:50px"></div>
+    </div>
+
+    <div style="width:100px;height:50px;overflow:hidden;">
+      <div style="width:500px;height:50px;">
+        <div style="display:inline-block;width:100px;height:50px;">
+        </div>
+        <div style="display: inline-block;width:100px;height:50px;">
+        </div>
+      </div>
+    </div>
+
     <div style="opacity:.5"></div>
     <div></div>
     `;
@@ -64,6 +79,22 @@ describe('is-invisible', () => {
     assert.isTrue(
       isInvisible(
         document.querySelector('[style="width:0;overflow:hidden"] > div')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - [style="height:100px;overflow:hidden"] > div:nth-child(3)', () => {
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('[style="height:100px;overflow:hidden"] > div:nth-child(3)')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - [style="width:500px;height:50px;"] > div:nth-child(2)', () => {
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('[style="width:500px;height:50px;"] > div:nth-child(2)')
       )
     );
   });
