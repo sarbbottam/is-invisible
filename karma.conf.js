@@ -23,6 +23,7 @@ module.exports = function (config) {
       'karma-coverage',
       'karma-mocha',
       'karma-mocha-reporter',
+      'karma-threshold-reporter',
       'karma-sourcemap-loader',
       'karma-chrome-launcher',
       'karma-phantomjs-launcher'
@@ -48,7 +49,14 @@ module.exports = function (config) {
       dir: 'coverage'
     },
 
-    reporters: ['mocha', 'coverage'],
+    thresholdReporter: {
+      statements: 100,
+      branches: 100,
+      functions: 100,
+      lines: 100
+    },
+
+    reporters: ['mocha', 'coverage', 'threshold'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
