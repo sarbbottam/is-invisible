@@ -52,21 +52,25 @@ function isInvisible(element, options) {
   }
 
   // if the parentNode can hide its children ...
-  if (getStyle(parentNode, 'overflow') === 'hidden' || getStyle(parentNode, 'overflow') === 'scroll') {
-    // if element's offset is different from parentNode
-    if (
-      // if element is to the right of the parentNode
-      left + VISIBLE_PADDING > parentNode.offsetWidth + parentNode.scrollLeft ||
+  if (
+    (
+      getStyle(parentNode, 'overflow') === 'hidden' ||
+      getStyle(parentNode, 'overflow') === 'scroll'
+    ) &&
+    (
       // if element is to the left of the parentNode
       left + width - VISIBLE_PADDING < parentNode.scrollLeft ||
-      // if element is below the parentNode
-      top + VISIBLE_PADDING > parentNode.offsetHeight + parentNode.scrollTop ||
+      // if element is to the right of the parentNode
+      left + VISIBLE_PADDING > parentNode.offsetWidth + parentNode.scrollLeft ||
       // if element is above the parentNode
-      top + height - VISIBLE_PADDING < parentNode.scrollTop
-    ) {
-      // element is out of bounds, so its invisible
-      return true;
-    }
+      top + height - VISIBLE_PADDING < parentNode.scrollTop ||
+      // if element is below the parentNode
+      top + VISIBLE_PADDING > parentNode.offsetHeight + parentNode.scrollTop
+    )
+  ) {
+    // if element's offset is different from parentNode
+    // element is out of bounds, so its invisible
+    return true;
   }
   // add the parent's offset(Top/Left) to element's offset
   if (element.offsetParent === parentNode) {
@@ -79,12 +83,7 @@ function isInvisible(element, options) {
 
 // cross browser get style
 function getStyle(element, property) {
-  if (window.getComputedStyle) {
-    return document.defaultView.getComputedStyle(element, null)[property];
-  }
-  if (element.currentStyle) {
-    return element.currentStyle[property];
-  }
+  return document.defaultView.getComputedStyle(element, null)[property];
 }
 
 function elementInDocument(element) {
