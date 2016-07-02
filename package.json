@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Checks if a DOM element is truly invisible",
   "scripts": {
-    "test": "xo && karma start"
+    "test": "xo && karma start",
+    "codecov": "codecov"
   },
   "keywords": [
     "invisible",
@@ -58,5 +59,8 @@
     ],
     "esnext": true,
     "space": true
+  },
+  "dependencies": {
+    "codecov": "^1.0.1"
   }
 }
