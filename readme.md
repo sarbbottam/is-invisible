@@ -3,6 +3,7 @@ is-invisible
 Checks if a DOM element is truly invisible
 
 [![Travis](https://img.shields.io/travis/sarbbottam/is-invisible.svg?maxAge=2592000&style=flat-square)](https://travis-ci.org/sarbbottam/is-invisible)
+[![Codecov](https://img.shields.io/codecov/c/github/sarbbottam/is-invisible.svg?maxAge=2592000&style=flat-square)](https://codecov.io/gh/sarbbottam/is-invisible)
 [![MIT License](https://img.shields.io/npm/l/watch-and-rsync.svg?maxAge=2592000&style=flat-square)](http://opensource.org/licenses/MIT)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?maxAge=2592000&style=flat-square)](http://makeapullrequest.com)
 
