@@ -50,10 +50,10 @@ module.exports = function (config) {
     },
 
     thresholdReporter: {
-      statements: 100,
-      branches: 100,
+      statements: 80,
+      branches: 80,
       functions: 100,
-      lines: 100
+      lines: 80
     },
 
     reporters: ['mocha', 'coverage', 'threshold'],

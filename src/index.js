@@ -7,27 +7,27 @@
 'use strict';
 
 function isInvisible(element, options) {
+  let height;
   let top;
   let bottom;
+  let width;
   let left;
   let right;
-  let height;
-  let width;
 
   if (typeof options === 'undefined') {
-    top = element.offsetTop;
-    bottom = top + element.offsetHeight;
-    left = element.offsetLeft;
-    right = left + element.offsetWidth;
     height = element.offsetHeight;
+    top = element.offsetTop;
+    bottom = top + height;
     width = element.offsetWidth;
+    left = element.offsetLeft;
+    right = left + width;
   } else {
+    height = options.height;
     top = options.top;
     bottom = options.bottom;
+    width = options.width;
     left = options.left;
     right = options.right;
-    height = options.height;
-    width = options.width;
   }
 
   const parentNode = element.parentNode;
@@ -53,24 +53,26 @@ function isInvisible(element, options) {
 
   // if the parentNode can hide its children ...
   if (
-    (
-      getStyle(parentNode, 'overflow') === 'hidden' ||
-      getStyle(parentNode, 'overflow') === 'scroll'
-    ) &&
-    (
-      // if element is to the left of the parentNode
-      left + width - VISIBLE_PADDING < parentNode.scrollLeft ||
-      // if element is to the right of the parentNode
-      left + VISIBLE_PADDING > parentNode.offsetWidth + parentNode.scrollLeft ||
+    getStyle(parentNode, 'overflow') === 'hidden' ||
+    getStyle(parentNode, 'overflow') === 'scroll'
+  ) {
+    if (
       // if element is above the parentNode
       top + height - VISIBLE_PADDING < parentNode.scrollTop ||
+
       // if element is below the parentNode
-      top + VISIBLE_PADDING > parentNode.offsetHeight + parentNode.scrollTop
-    )
-  ) {
-    // if element's offset is different from parentNode
-    // element is out of bounds, so its invisible
-    return true;
+      top + VISIBLE_PADDING > parentNode.offsetHeight + parentNode.scrollTop ||
+
+      // if element is to the left of the parentNode
+      left + width - VISIBLE_PADDING < parentNode.scrollLeft ||
+
+      // if element is to the right of the parentNode
+      left + VISIBLE_PADDING > parentNode.offsetWidth + parentNode.scrollLeft
+    ) {
+      // if either of the above is true the element is not visible
+      // element is out of bounds, so its invisible
+      return true;
+    }
   }
   // add the parent's offset(Top/Left) to element's offset
   if (element.offsetParent === parentNode) {
