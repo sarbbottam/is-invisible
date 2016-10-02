@@ -1,40 +1,6 @@
 const isInvisible = require('../src/.');
 
 describe('is-invisible', () => {
-  const markup = `
-    <div style="display:none"></div>
-    <div style="visibility:hidden"></div>
-    <div style="opacity:0"></div>
-
-    <div style="height:0;overflow:hidden">
-      <div></div>
-    </div>
-    <div style="width:0;overflow:hidden">
-      <div></div>
-    </div>
-
-    <div style="height:100px;overflow:hidden">
-      <div style="height:50px"></div>
-      <div style="height:50px"></div>
-      <div style="height:50px"></div>
-    </div>
-
-    <div style="width:100px;height:50px;overflow:hidden;">
-      <div style="width:500px;height:50px;">
-        <div style="display:inline-block;width:100px;height:50px;">
-        </div>
-        <div style="display: inline-block;width:100px;height:50px;">
-        </div>
-      </div>
-    </div>
-
-    <div style="opacity:.5"></div>
-    <div></div>
-    `;
-  const wrapper = document.createElement('div');
-  wrapper.innerHTML = markup;
-  document.body.appendChild(wrapper);
-
   it('should return `true` for an non existent element', () => {
     assert.isTrue(
       isInvisible(
@@ -43,75 +9,103 @@ describe('is-invisible', () => {
     );
   });
 
-  it('should return `true` for invisible element - [style="display:none"]', () => {
-    assert.isTrue(
-      isInvisible(
-        document.querySelector('[style="display:none"]')
-      )
-    );
-  });
-
-  it('should return `true` for invisible element - [style="visibility:hidden"]', () => {
-    assert.isTrue(
-      isInvisible(
-        document.querySelector('[style="visibility:hidden"]')
-      )
-    );
-  });
-
-  it('should return `true` for invisible element - [style="opacity:0"]', () => {
-    assert.isTrue(
-      isInvisible(
-        document.querySelector('[style="opacity:0"]')
-      )
-    );
-  });
-
-  it('should return `true` for invisible element - [style="height:0;overflow:hidden"] > div', () => {
-    assert.isTrue(
-      isInvisible(
-        document.querySelector('[style="height:0;overflow:hidden"] > div')
-      )
-    );
-  });
-
-  it('should return `true` for invisible element - [style="width:0;overflow:hidden"] > div', () => {
-    assert.isTrue(
-      isInvisible(
-        document.querySelector('[style="width:0;overflow:hidden"] > div')
-      )
-    );
-  });
-
-  it('should return `true` for invisible element - [style="height:100px;overflow:hidden"] > div:nth-child(3)', () => {
-    assert.isTrue(
-      isInvisible(
-        document.querySelector('[style="height:100px;overflow:hidden"] > div:nth-child(3)')
-      )
-    );
-  });
-
-  it('should return `true` for invisible element - [style="width:500px;height:50px;"] > div:nth-child(2)', () => {
-    assert.isTrue(
-      isInvisible(
-        document.querySelector('[style="width:500px;height:50px;"] > div:nth-child(2)')
-      )
-    );
-  });
-
-  it('should return `false` for visible element - [style="opacity:.5"]', () => {
+  it('should return `false` if the element is visible', () => {
     assert.isFalse(
       isInvisible(
-        document.querySelector('[style="opacity:.5"]')
+        document.querySelector('div')
       )
     );
   });
 
-  it('should return `false` for visible element - :not([style])', () => {
-    assert.isFalse(
+  it('should return `true` for invisible element - display:none', () => {
+    assert.isTrue(
       isInvisible(
-        document.querySelector(':not([style])')
+        document.querySelector('.d-n.target')
       )
     );
   });
+
+  it('should return `true` for invisible element - visibility:hidden', () => {
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.v-h.target')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - opacity:0', () => {
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-0.target')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:hidden - right', () => {
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-h .o-x-c .target')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:scroll - right', () => {
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-s .o-x-c .target')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:auto - right', () => {
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-a .o-x-c .target')
+      )
+    );
+  });
+
+  // add test cases for
+  // overflow:hidden - left
+  // overflow:scroll - left
+  // overflow:auto - left
+
+  it('should return `true` for invisible element - overflow:hidden - bottom', () => {
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-h .o-y-c .target')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:scroll - bottom', () => {
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-s .o-y-c .target')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:auto - bottom', () => {
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-a .o-y-c .target')
+      )
+    );
+  });
+
+  // add test cases for
+  // overflow:hidden - top
+  // overflow:scroll - top
+  // overflow:auto - top
+
+  // add test cases for
+  // position:relative - left/right/top/bottom
+  // position:absolute - left/right/top/bottom
+  // position:fixed - left/right/top/bottom
+
+  // add test cases for
+  // transform - left/right/top/bottom
+  // transform - left/right/top/bottom
+  // transform - left/right/top/bottom
 });

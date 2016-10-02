@@ -53,32 +53,39 @@ function isInvisible(element, options) {
 
   // if the parentNode can hide its children ...
   if (
-    getStyle(parentNode, 'overflow') === 'hidden' ||
-    getStyle(parentNode, 'overflow') === 'scroll'
-  ) {
-    if (
+    (
+      getStyle(parentNode, 'overflow-x') === 'hidden' ||
+      getStyle(parentNode, 'overflow-y') === 'hidden' ||
+      getStyle(parentNode, 'overflow-x') === 'scroll' ||
+      getStyle(parentNode, 'overflow-y') === 'scroll' ||
+      getStyle(parentNode, 'overflow-x') === 'auto' ||
+      getStyle(parentNode, 'overflow-y') === 'auto'
+    ) && (
       // if element is above the parentNode
       top + height - VISIBLE_PADDING < parentNode.scrollTop ||
 
       // if element is below the parentNode
-      top + VISIBLE_PADDING > parentNode.offsetHeight + parentNode.scrollTop ||
+      top + VISIBLE_PADDING > parentNode.offsetHeight + parentNode.scrollTop + parentNode.offsetTop ||
 
       // if element is to the left of the parentNode
       left + width - VISIBLE_PADDING < parentNode.scrollLeft ||
 
       // if element is to the right of the parentNode
-      left + VISIBLE_PADDING > parentNode.offsetWidth + parentNode.scrollLeft
-    ) {
-      // if either of the above is true the element is not visible
-      // element is out of bounds, so its invisible
-      return true;
-    }
+      left + VISIBLE_PADDING > parentNode.offsetWidth + parentNode.scrollLeft + parentNode.offsetLeft
+    )
+  ) {
+    // if either of the above is true the element is not visible
+    // element is out of bounds, so its invisible
+    return true;
   }
+
   // add the parent's offset(Top/Left) to element's offset
-  if (element.offsetParent === parentNode) {
-    left += parentNode.offsetLeft;
-    top += parentNode.offsetTop;
-  }
+  // this needs to be corrected.
+  // if (element.offsetParent === parentNode) {
+  //   left += parentNode.offsetLeft;
+  //   top += parentNode.offsetTop;
+  // }
+
   // recursively check upwards ...
   return isInvisible(parentNode, {top, bottom, left, right, height, width});
 }
