@@ -56,91 +56,70 @@ document.head.appendChild(styleNode);
 const markup = `
   display: none
   <div class="wrapper">
-    <div class="inline-block d-n">
-    </div>
+    <div class="inline-block d-n"></div>
   </div>
 
   visibility: hidden
   <div class="wrapper">
-    <div class="inline-block v-h">
-    </div>
+    <div class="inline-block v-h"></div>
   </div>
 
   opacity: 0
   <div class="wrapper">
-    <div class="inline-block o-0">
-    </div>
+    <div class="inline-block o-0"></div>
   </div>
 
   overflow: hidden (horizontal)
   <div class="wrapper o-h x">
     <div class="o-x">
-      <div class="inline-block">
-      </div>
-      <div class="inline-block">
-      </div>
-      <div class="inline-block">
-      </div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
     </div>
   </div>
 
   overflow: scroll (horizontal)
   <div class="wrapper o-s x">
     <div class="o-x">
-      <div class="inline-block">
-      </div>
-      <div class="inline-block">
-      </div>
-      <div class="inline-block">
-      </div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
     </div>
   </div>
 
   overflow: auto (horizontal)
   <div class="wrapper o-a x">
     <div class="o-x">
-      <div class="inline-block">
-      </div>
-      <div class="inline-block">
-      </div>
-      <div class="inline-block">
-      </div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
     </div>
   </div>
 
   overflow: hidden (vertical)
   <div class="h-100 wrapper o-h y">
     <div class="o-y">
-      <div class="inline-block">
-      </div>
-      <div class="inline-block">
-      </div>
-      <div class="inline-block target">
-      </div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
     </div>
   </div>
 
   overflow: scroll (vertical)
   <div class="h-100 wrapper o-s y">
     <div class="o-y">
-      <div class="inline-block">
-      </div>
-      <div class="inline-block">
-      </div>
-      <div class="inline-block">
-      </div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
     </div>
   </div>
 
   overflow: auto (vertical)
   <div class="h-100 wrapper o-a y">
     <div class="o-y">
-      <div class="inline-block">
-      </div>
-      <div class="inline-block">
-      </div>
-      <div class="inline-block ">
-      </div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
+      <div class="inline-block"></div>
     </div>
   </div>
 `;
