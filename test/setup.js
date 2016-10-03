@@ -1,12 +1,19 @@
 const style = `
-  div {
-    width: 100px;
-  }
-
   .wrapper {
     border: 2px solid red;
     margin-bottom: 4px;
     width: 150px;
+  }
+
+  .block,
+  .inline-block {
+    border: 1px solid black;
+    height: 100px;
+    width: 100px;
+  }
+
+  .inline-block {
+    display: inline-block;
   }
 
   .h-100 {
@@ -37,13 +44,8 @@ const style = `
     overflow: auto;
   }
 
-  .o-x-c {
+  .o-x {
     width: 500px;
-  }
-
-  .o-c-c {
-    display: inline-block;
-    border: 1px solid black;
   }
 `;
 
@@ -52,92 +54,92 @@ styleNode.innerHTML = style;
 document.head.appendChild(styleNode);
 
 const markup = `
+  display: none
   <div class="wrapper">
-    display: none
-    <div class="d-n h-100 target">
+    <div class="inline-block d-n">
     </div>
   </div>
 
+  visibility: hidden
   <div class="wrapper">
-    visibility: hidden
-    <div class="v-h h-100 target">
+    <div class="inline-block v-h">
     </div>
   </div>
 
+  opacity: 0
   <div class="wrapper">
-    opacity: 0
-    <div class="o-0 h-100 target">
+    <div class="inline-block o-0">
     </div>
   </div>
 
+  overflow: hidden (horizontal)
   <div class="wrapper o-h x">
-    overflow: hidden (horizontal)
-    <div class="o-x-c">
-      <div class="o-x-c-c o-c-c h-100">
+    <div class="o-x">
+      <div class="inline-block">
       </div>
-      <div class="o-x-c-c o-c-c h-100">
+      <div class="inline-block">
       </div>
-      <div class="o-x-c-c o-c-c h-100 target">
+      <div class="inline-block">
       </div>
     </div>
   </div>
 
+  overflow: scroll (horizontal)
   <div class="wrapper o-s x">
-    overflow: hidden (horizontal)
-    <div class="o-x-c">
-      <div class="o-x-c-c o-c-c h-100">
+    <div class="o-x">
+      <div class="inline-block">
       </div>
-      <div class="o-x-c-c o-c-c h-100">
+      <div class="inline-block">
       </div>
-      <div class="o-x-c-c o-c-c h-100 target">
+      <div class="inline-block">
       </div>
     </div>
   </div>
 
+  overflow: auto (horizontal)
   <div class="wrapper o-a x">
-    overflow: hidden (horizontal)
-    <div class="o-x-c">
-      <div class="o-x-c-c o-c-c h-100">
+    <div class="o-x">
+      <div class="inline-block">
       </div>
-      <div class="o-x-c-c o-c-c h-100">
+      <div class="inline-block">
       </div>
-      <div class="o-x-c-c o-c-c h-100 target">
-      </div>
-    </div>
-  </div>
-
-  <div class="wrapper o-h h-100 y">
-    overflow: hidden (vertical)
-    <div class="o-y-c">
-      <div class="o-c-c h-100">
-      </div>
-      <div class="o-c-c h-100">
-      </div>
-      <div class="o-c-c h-100 target">
+      <div class="inline-block">
       </div>
     </div>
   </div>
 
-  <div class="wrapper o-s h-100 y">
-    overflow: scroll (vertical)
-    <div class="o-y-c">
-      <div class="o-c-c h-100">
+  overflow: hidden (vertical)
+  <div class="h-100 wrapper o-h y">
+    <div class="o-y">
+      <div class="inline-block">
       </div>
-      <div class="o-c-c h-100">
+      <div class="inline-block">
       </div>
-      <div class="o-c-c h-100 target">
+      <div class="inline-block target">
       </div>
     </div>
   </div>
 
-  <div class="wrapper o-a h-100 y">
-    overflow: auto (vertical)
-    <div class="o-y-c">
-      <div class="o-c-c h-100">
+  overflow: scroll (vertical)
+  <div class="h-100 wrapper o-s y">
+    <div class="o-y">
+      <div class="inline-block">
       </div>
-      <div class="o-c-c h-100">
+      <div class="inline-block">
       </div>
-      <div class="o-c-c h-100 target">
+      <div class="inline-block">
+      </div>
+    </div>
+  </div>
+
+  overflow: auto (vertical)
+  <div class="h-100 wrapper o-a y">
+    <div class="o-y">
+      <div class="inline-block">
+      </div>
+      <div class="inline-block">
+      </div>
+      <div class="inline-block ">
       </div>
     </div>
   </div>

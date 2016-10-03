@@ -20,7 +20,7 @@ describe('is-invisible', () => {
   it('should return `true` for invisible element - display:none', () => {
     assert.isTrue(
       isInvisible(
-        document.querySelector('.d-n.target')
+        document.querySelector('.d-n')
       )
     );
   });
@@ -28,7 +28,7 @@ describe('is-invisible', () => {
   it('should return `true` for invisible element - visibility:hidden', () => {
     assert.isTrue(
       isInvisible(
-        document.querySelector('.v-h.target')
+        document.querySelector('.v-h')
       )
     );
   });
@@ -36,7 +36,7 @@ describe('is-invisible', () => {
   it('should return `true` for invisible element - opacity:0', () => {
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-0.target')
+        document.querySelector('.o-0')
       )
     );
   });
@@ -44,7 +44,7 @@ describe('is-invisible', () => {
   it('should return `true` for invisible element - overflow:hidden - right', () => {
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-h .o-x-c .target')
+        document.querySelector('.o-h.x .inline-block:nth-child(3)')
       )
     );
   });
@@ -52,7 +52,7 @@ describe('is-invisible', () => {
   it('should return `true` for invisible element - overflow:scroll - right', () => {
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-s .o-x-c .target')
+        document.querySelector('.o-s.x .inline-block:nth-child(3)')
       )
     );
   });
@@ -60,7 +60,7 @@ describe('is-invisible', () => {
   it('should return `true` for invisible element - overflow:auto - right', () => {
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-a .o-x-c .target')
+        document.querySelector('.o-a.x .inline-block:nth-child(3)')
       )
     );
   });
@@ -68,7 +68,7 @@ describe('is-invisible', () => {
   it('should return `false` for visible element - overflow:hidden - horizontal', () => {
     assert.isFalse(
       isInvisible(
-        document.querySelector('.o-h .o-x-c-c')
+        document.querySelector('.o-h.x .inline-block')
       )
     );
   });
@@ -76,7 +76,7 @@ describe('is-invisible', () => {
   it('should return `false` for visible element - overflow:scroll - horizontal', () => {
     assert.isFalse(
       isInvisible(
-        document.querySelector('.o-s .o-x-c-c')
+        document.querySelector('.o-s.x .inline-block')
       )
     );
   });
@@ -84,7 +84,7 @@ describe('is-invisible', () => {
   it('should return `false` for visible element - overflow:auto - horizontal', () => {
     assert.isFalse(
       isInvisible(
-        document.querySelector('.o-a .o-x-c-c')
+        document.querySelector('.o-a.x .inline-block')
       )
     );
   });
@@ -93,7 +93,7 @@ describe('is-invisible', () => {
     document.querySelector('.o-h.x').scrollLeft = 500;
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-h .o-x-c-c')
+        document.querySelector('.o-h.x .inline-block')
       )
     );
   });
@@ -102,7 +102,7 @@ describe('is-invisible', () => {
     document.querySelector('.o-s.x').scrollLeft = 500;
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-s .o-x-c-c')
+        document.querySelector('.o-s.x .inline-block')
       )
     );
   });
@@ -111,7 +111,7 @@ describe('is-invisible', () => {
     document.querySelector('.o-a.x').scrollLeft = 500;
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-a .o-x-c-c')
+        document.querySelector('.o-a.x .inline-block')
       )
     );
   });
@@ -119,7 +119,7 @@ describe('is-invisible', () => {
   it('should return `true` for invisible element - overflow:hidden - bottom', () => {
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-h .o-y-c .target')
+        document.querySelector('.o-h.y .inline-block:nth-child(3)')
       )
     );
   });
@@ -127,7 +127,7 @@ describe('is-invisible', () => {
   it('should return `true` for invisible element - overflow:scroll - bottom', () => {
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-s .o-y-c .target')
+        document.querySelector('.o-s.y .inline-block:nth-child(3)')
       )
     );
   });
@@ -135,7 +135,7 @@ describe('is-invisible', () => {
   it('should return `true` for invisible element - overflow:auto - bottom', () => {
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-a .o-y-c .target')
+        document.querySelector('.o-a.y .inline-block:nth-child(3)')
       )
     );
   });
@@ -143,7 +143,7 @@ describe('is-invisible', () => {
   it('should return `false` for visible element - overflow:hidden - vertical', () => {
     assert.isFalse(
       isInvisible(
-        document.querySelector('.o-h .o-y-c .o-c-c')
+        document.querySelector('.o-h.y .inline-block')
       )
     );
   });
@@ -151,7 +151,7 @@ describe('is-invisible', () => {
   it('should return `false` for visible element - overflow:scroll - vertical', () => {
     assert.isFalse(
       isInvisible(
-        document.querySelector('.o-s .o-y-c .o-c-c')
+        document.querySelector('.o-s.y .inline-block')
       )
     );
   });
@@ -159,7 +159,7 @@ describe('is-invisible', () => {
   it('should return `false` for visible element - overflow:auto - vertical', () => {
     assert.isFalse(
       isInvisible(
-        document.querySelector('.o-a .o-y-c .o-c-c')
+        document.querySelector('.o-a.y .inline-block')
       )
     );
   });
@@ -168,7 +168,7 @@ describe('is-invisible', () => {
     document.querySelector('.o-h.y').scrollTop = 500;
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-h .o-y-c .o-c-c')
+        document.querySelector('.o-h.y .inline-block')
       )
     );
   });
@@ -177,7 +177,7 @@ describe('is-invisible', () => {
     document.querySelector('.o-s.y').scrollTop = 500;
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-s .o-y-c .o-c-c')
+        document.querySelector('.o-s.y .inline-block')
       )
     );
   });
@@ -186,7 +186,7 @@ describe('is-invisible', () => {
     document.querySelector('.o-a.y').scrollTop = 500;
     assert.isTrue(
       isInvisible(
-        document.querySelector('.o-a .o-y-c .o-c-c')
+        document.querySelector('.o-a.y .inline-block')
       )
     );
   });
