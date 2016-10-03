@@ -87,11 +87,17 @@ function isInvisible(element, options) {
   }
 
   // add the parent's offset(Top/Left) to element's offset
-  // this needs to be corrected.
-  // if (element.offsetParent === parentNode) {
-  //   left += parentNode.offsetLeft;
-  //   top += parentNode.offsetTop;
-  // }
+  if (element.offsetParent === parentNode) {
+    elementLeft += parentLeft;
+    elementTop += parentTop;
+  }
+
+  if (
+    elementTop + elementHeight < 0 ||
+    elementLeft + elementWidth < 0
+  ) {
+    return true;
+  }
 
   // recursively check upwards ...
   return isInvisible(parentNode, {
