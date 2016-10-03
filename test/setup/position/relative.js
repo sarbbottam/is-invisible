@@ -1,4 +1,4 @@
-const positionMarkup = `
+const positionRelativeMarkup = `
   position: relative -ve top
   <div class="wrapper">
     <div class="inline-block p-r t--9999px">
@@ -28,6 +28,6 @@ const positionMarkup = `
   </div>
 `;
 
-const positionWrapperNode = document.createElement('div');
-positionWrapperNode.innerHTML = positionMarkup;
-document.body.appendChild(positionWrapperNode);
+const positionRelativeWrapperNode = document.createElement('div');
+positionRelativeWrapperNode.innerHTML = positionRelativeMarkup;
+document.body.appendChild(positionRelativeWrapperNode);
