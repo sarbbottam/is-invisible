@@ -7,27 +7,27 @@
 'use strict';
 
 function isInvisible(element, options) {
-  let height;
-  let top;
-  let bottom;
-  let width;
-  let left;
-  let right;
+  let elementHeight;
+  let elementTop;
+  let elementBottom;
+  let elementWidth;
+  let elementLeft;
+  let elementRight;
 
   if (typeof options === 'undefined') {
-    height = element.offsetHeight;
-    top = element.offsetTop;
-    bottom = top + height;
-    width = element.offsetWidth;
-    left = element.offsetLeft;
-    right = left + width;
+    elementHeight = element.offsetHeight;
+    elementTop = element.offsetTop;
+    elementBottom = elementTop + elementHeight;
+    elementWidth = element.offsetWidth;
+    elementLeft = element.offsetLeft;
+    elementRight = elementLeft + elementWidth;
   } else {
-    height = options.height;
-    top = options.top;
-    bottom = options.bottom;
-    width = options.width;
-    left = options.left;
-    right = options.right;
+    elementHeight = options.elementHeight;
+    elementTop = options.elementTop;
+    elementBottom = options.elementBottom;
+    elementWidth = options.elementWidth;
+    elementLeft = options.elementLeft;
+    elementRight = options.elementRight;
   }
 
   const parentNode = element.parentNode;
@@ -51,6 +51,13 @@ function isInvisible(element, options) {
     return true;
   }
 
+  const parentHeight = parentNode.offsetHeight;
+  const parentTop = parentNode.scrollTop + parentNode.offsetTop;
+  const parentBottom = parentTop + parentHeight;
+  const parentWidth = parentNode.offsetWidth;
+  const parentLeft = parentNode.scrollLeft + parentNode.offsetLeft;
+  const parentRight = parentLeft + parentWidth;
+
   // if the parentNode can hide its children ...
   if (
     (
@@ -62,16 +69,16 @@ function isInvisible(element, options) {
       getStyle(parentNode, 'overflow-y') === 'auto'
     ) && (
       // if element is above the parentNode
-      top + height - VISIBLE_PADDING < parentNode.scrollTop + parentNode.offsetTop ||
+      elementBottom - VISIBLE_PADDING < parentTop ||
 
       // if element is below the parentNode
-      top + VISIBLE_PADDING > parentNode.offsetHeight + parentNode.scrollTop + parentNode.offsetTop ||
+      elementTop + VISIBLE_PADDING > parentBottom ||
 
       // if element is to the left of the parentNode
-      left + width - VISIBLE_PADDING < parentNode.scrollLeft + parentNode.offsetLeft ||
+      elementRight - VISIBLE_PADDING < parentLeft ||
 
       // if element is to the right of the parentNode
-      left + VISIBLE_PADDING > parentNode.offsetWidth + parentNode.scrollLeft + parentNode.offsetLeft
+      elementLeft + VISIBLE_PADDING > parentRight
     )
   ) {
     // if either of the above is true the element is out of bounds,
@@ -87,7 +94,14 @@ function isInvisible(element, options) {
   // }
 
   // recursively check upwards ...
-  return isInvisible(parentNode, {top, bottom, left, right, height, width});
+  return isInvisible(parentNode, {
+    elementHeight,
+    elementTop,
+    elementBottom,
+    elementWidth,
+    elementLeft,
+    elementRight
+  });
 }
 
 // cross browser get style
