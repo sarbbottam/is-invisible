@@ -62,20 +62,20 @@ function isInvisible(element, options) {
       getStyle(parentNode, 'overflow-y') === 'auto'
     ) && (
       // if element is above the parentNode
-      top + height - VISIBLE_PADDING < parentNode.scrollTop ||
+      top + height - VISIBLE_PADDING < parentNode.scrollTop + parentNode.offsetTop ||
 
       // if element is below the parentNode
       top + VISIBLE_PADDING > parentNode.offsetHeight + parentNode.scrollTop + parentNode.offsetTop ||
 
       // if element is to the left of the parentNode
-      left + width - VISIBLE_PADDING < parentNode.scrollLeft ||
+      left + width - VISIBLE_PADDING < parentNode.scrollLeft + parentNode.offsetLeft ||
 
       // if element is to the right of the parentNode
       left + VISIBLE_PADDING > parentNode.offsetWidth + parentNode.scrollLeft + parentNode.offsetLeft
     )
   ) {
-    // if either of the above is true the element is not visible
-    // element is out of bounds, so its invisible
+    // if either of the above is true the element is out of bounds,
+    // so it is invisible
     return true;
   }
 

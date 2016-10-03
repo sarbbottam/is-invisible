@@ -65,10 +65,56 @@ describe('is-invisible', () => {
     );
   });
 
-  // add test cases for
-  // overflow:hidden - left
-  // overflow:scroll - left
-  // overflow:auto - left
+  it('should return `false` for visible element - overflow:hidden - horizontal', () => {
+    assert.isFalse(
+      isInvisible(
+        document.querySelector('.o-h .o-x-c-c')
+      )
+    );
+  });
+
+  it('should return `false` for visible element - overflow:scroll - horizontal', () => {
+    assert.isFalse(
+      isInvisible(
+        document.querySelector('.o-s .o-x-c-c')
+      )
+    );
+  });
+
+  it('should return `false` for visible element - overflow:auto - horizontal', () => {
+    assert.isFalse(
+      isInvisible(
+        document.querySelector('.o-a .o-x-c-c')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:hidden - left', () => {
+    document.querySelector('.o-h.x').scrollLeft = 500;
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-h .o-x-c-c')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:scroll - left', () => {
+    document.querySelector('.o-s.x').scrollLeft = 500;
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-s .o-x-c-c')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:auto - left', () => {
+    document.querySelector('.o-a.x').scrollLeft = 500;
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-a .o-x-c-c')
+      )
+    );
+  });
 
   it('should return `true` for invisible element - overflow:hidden - bottom', () => {
     assert.isTrue(
@@ -94,10 +140,56 @@ describe('is-invisible', () => {
     );
   });
 
-  // add test cases for
-  // overflow:hidden - top
-  // overflow:scroll - top
-  // overflow:auto - top
+  it('should return `false` for visible element - overflow:hidden - vertical', () => {
+    assert.isFalse(
+      isInvisible(
+        document.querySelector('.o-h .o-y-c .o-c-c')
+      )
+    );
+  });
+
+  it('should return `false` for visible element - overflow:scroll - vertical', () => {
+    assert.isFalse(
+      isInvisible(
+        document.querySelector('.o-s .o-y-c .o-c-c')
+      )
+    );
+  });
+
+  it('should return `false` for visible element - overflow:auto - vertical', () => {
+    assert.isFalse(
+      isInvisible(
+        document.querySelector('.o-a .o-y-c .o-c-c')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:hidden - top', () => {
+    document.querySelector('.o-h.y').scrollTop = 500;
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-h .o-y-c .o-c-c')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:scroll - top', () => {
+    document.querySelector('.o-s.y').scrollTop = 500;
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-s .o-y-c .o-c-c')
+      )
+    );
+  });
+
+  it('should return `true` for invisible element - overflow:auto - top', () => {
+    document.querySelector('.o-a.y').scrollTop = 500;
+    assert.isTrue(
+      isInvisible(
+        document.querySelector('.o-a .o-y-c .o-c-c')
+      )
+    );
+  });
 
   // add test cases for
   // position:relative - left/right/top/bottom

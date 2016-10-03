@@ -70,7 +70,7 @@ const markup = `
     </div>
   </div>
 
-  <div class="wrapper o-h">
+  <div class="wrapper o-h x">
     overflow: hidden (horizontal)
     <div class="o-x-c">
       <div class="o-x-c-c o-c-c h-100">
@@ -82,7 +82,7 @@ const markup = `
     </div>
   </div>
 
-  <div class="wrapper o-s">
+  <div class="wrapper o-s x">
     overflow: hidden (horizontal)
     <div class="o-x-c">
       <div class="o-x-c-c o-c-c h-100">
@@ -94,7 +94,7 @@ const markup = `
     </div>
   </div>
 
-  <div class="wrapper o-a">
+  <div class="wrapper o-a x">
     overflow: hidden (horizontal)
     <div class="o-x-c">
       <div class="o-x-c-c o-c-c h-100">
@@ -106,7 +106,7 @@ const markup = `
     </div>
   </div>
 
-  <div class="wrapper o-h h-100">
+  <div class="wrapper o-h h-100 y">
     overflow: hidden (vertical)
     <div class="o-y-c">
       <div class="o-c-c h-100">
@@ -118,7 +118,7 @@ const markup = `
     </div>
   </div>
 
-  <div class="wrapper o-s h-100">
+  <div class="wrapper o-s h-100 y">
     overflow: scroll (vertical)
     <div class="o-y-c">
       <div class="o-c-c h-100">
@@ -130,7 +130,7 @@ const markup = `
     </div>
   </div>
 
-  <div class="wrapper o-a h-100">
+  <div class="wrapper o-a h-100 y">
     overflow: auto (vertical)
     <div class="o-y-c">
       <div class="o-c-c h-100">
@@ -141,9 +141,10 @@ const markup = `
       </div>
     </div>
   </div>
-
-  // add cases  for trandform
 `;
+
+// add cases  for position
+// add cases  for trandform
 
 const wrapperNode = document.createElement('div');
 wrapperNode.innerHTML = markup;
