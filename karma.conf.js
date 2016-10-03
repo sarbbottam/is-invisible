@@ -11,10 +11,10 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['mocha', 'chai'],
     files: [
-      'test/*.js'
+      'test/**/*.js'
     ],
     preprocessors: {
-      'test/*.js': ['webpack']
+      'test/**/*.js': ['webpack']
     },
 
     plugins: [

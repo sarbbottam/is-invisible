@@ -1,26 +1,6 @@
 const isInvisible = require('../src/.');
 
-describe('is-invisible', () => {
-  it('should return `true` for an non existent element', () => {
-    assert.isTrue(isInvisible(document.createElement('div')));
-  });
-
-  it('should return `false` if the element is visible', () => {
-    assert.isFalse(isInvisible(document.querySelector('div')));
-  });
-
-  it('should return `true` for invisible element - display:none', () => {
-    assert.isTrue(isInvisible(document.querySelector('.d-n')));
-  });
-
-  it('should return `true` for invisible element - visibility:hidden', () => {
-    assert.isTrue(isInvisible(document.querySelector('.v-h')));
-  });
-
-  it('should return `true` for invisible element - opacity:0', () => {
-    assert.isTrue(isInvisible(document.querySelector('.o-0')));
-  });
-
+describe('is-invisible - overflow', () => {
   it('should return `true` for invisible element - overflow:hidden - right', () => {
     assert.isTrue(isInvisible(document.querySelector('.o-h.x .inline-block:nth-child(3)')));
   });
@@ -98,14 +78,4 @@ describe('is-invisible', () => {
     document.querySelector('.o-a.y').scrollTop = 500;
     assert.isTrue(isInvisible(document.querySelector('.o-a.y .inline-block')));
   });
-
-  // add test cases for
-  // position:relative - left/right/top/bottom
-  // position:absolute - left/right/top/bottom
-  // position:fixed - left/right/top/bottom
-
-  // add test cases for
-  // transform - left/right/top/bottom
-  // transform - left/right/top/bottom
-  // transform - left/right/top/bottom
 });
