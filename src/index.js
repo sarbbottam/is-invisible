@@ -52,10 +52,10 @@ function isInvisible(element, options) {
   }
 
   const parentHeight = parentNode.offsetHeight;
-  const parentTop = parentNode.scrollTop + parentNode.offsetTop;
+  const parentTop = parentNode.offsetTop;
   const parentBottom = parentTop + parentHeight;
   const parentWidth = parentNode.offsetWidth;
-  const parentLeft = parentNode.scrollLeft + parentNode.offsetLeft;
+  const parentLeft = parentNode.offsetLeft;
   const parentRight = parentLeft + parentWidth;
 
   // if the parentNode can hide its children ...
@@ -69,16 +69,16 @@ function isInvisible(element, options) {
       getStyle(parentNode, 'overflow-y') === 'auto'
     ) && (
       // if element is above the parentNode
-      elementBottom - VISIBLE_PADDING < parentTop ||
+      elementBottom - VISIBLE_PADDING < parentNode.scrollTop + parentTop ||
 
       // if element is below the parentNode
-      elementTop + VISIBLE_PADDING > parentBottom ||
+      elementTop + VISIBLE_PADDING > parentNode.scrollTop + parentBottom ||
 
       // if element is to the left of the parentNode
-      elementRight - VISIBLE_PADDING < parentLeft ||
+      elementRight - VISIBLE_PADDING < parentNode.scrollLeft + parentLeft ||
 
       // if element is to the right of the parentNode
-      elementLeft + VISIBLE_PADDING > parentRight
+      elementLeft + VISIBLE_PADDING > parentNode.scrollLeft + parentRight
     )
   ) {
     // if either of the above is true the element is out of bounds,
@@ -86,15 +86,29 @@ function isInvisible(element, options) {
     return true;
   }
 
+  if (
+    getStyle(element, 'position') === 'fixed' &&
+    (
+      parseInt(getStyle(element, 'top'), 10) < 0 ||
+      parseInt(getStyle(element, 'left'), 10) < 0 ||
+      parseInt(getStyle(element, 'right'), 10) < 0 ||
+      parseInt(getStyle(element, 'bottom'), 10) < 0
+    )
+  ) {
+    return true;
+  }
+
   // add the parent's offset(Top/Left) to element's offset
   if (element.offsetParent === parentNode) {
-    elementLeft += parentLeft;
     elementTop += parentTop;
+    elementBottom += parentTop;
+    elementLeft += parentLeft;
+    elementRight += parentLeft;
   }
 
   if (
-    elementTop + elementHeight < 0 ||
-    elementLeft + elementWidth < 0
+    elementBottom < 0 ||
+    elementRight < 0
   ) {
     return true;
   }
