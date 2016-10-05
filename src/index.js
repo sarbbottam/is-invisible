@@ -60,14 +60,8 @@ function isInvisible(element, options) {
 
   // if the parentNode can hide its children ...
   if (
+    hasOverflow(parentNode) &&
     (
-      getStyle(parentNode, 'overflow-x') === 'hidden' ||
-      getStyle(parentNode, 'overflow-y') === 'hidden' ||
-      getStyle(parentNode, 'overflow-x') === 'scroll' ||
-      getStyle(parentNode, 'overflow-y') === 'scroll' ||
-      getStyle(parentNode, 'overflow-x') === 'auto' ||
-      getStyle(parentNode, 'overflow-y') === 'auto'
-    ) && (
       // if element is above the parentNode
       elementBottom - VISIBLE_PADDING < parentNode.scrollTop + parentTop ||
 
@@ -87,13 +81,7 @@ function isInvisible(element, options) {
   }
 
   if (
-    getStyle(element, 'position') === 'fixed' &&
-    (
-      parseInt(getStyle(element, 'top'), 10) < 0 ||
-      parseInt(getStyle(element, 'left'), 10) < 0 ||
-      parseInt(getStyle(element, 'right'), 10) < 0 ||
-      parseInt(getStyle(element, 'bottom'), 10) < 0
-    )
+    isInvisibleByFixedPosition(element)
   ) {
     return true;
   }
@@ -122,6 +110,29 @@ function isInvisible(element, options) {
     elementLeft,
     elementRight
   });
+}
+
+function hasOverflow(node) {
+  return getStyle(node, 'overflow-x') === 'hidden' ||
+    getStyle(node, 'overflow-y') === 'hidden' ||
+    getStyle(node, 'overflow-x') === 'scroll' ||
+    getStyle(node, 'overflow-y') === 'scroll' ||
+    getStyle(node, 'overflow-x') === 'auto' ||
+    getStyle(node, 'overflow-y') === 'auto';
+}
+
+function isInvisibleByFixedPosition(node) {
+  if (
+    getStyle(node, 'position') === 'fixed' &&
+    (
+      parseInt(getStyle(node, 'top'), 10) < 0 ||
+      parseInt(getStyle(node, 'left'), 10) < 0 ||
+      parseInt(getStyle(node, 'right'), 10) < 0 ||
+      parseInt(getStyle(node, 'bottom'), 10) < 0
+    )
+  ) {
+    return true;
+  }
 }
 
 // cross browser get style
