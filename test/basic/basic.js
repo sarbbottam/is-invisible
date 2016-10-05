@@ -1,4 +1,4 @@
-const isInvisible = require('../src/.');
+const isInvisible = require('../../src/.');
 
 describe('is-invisible - basic', () => {
   it('should return `true` for an non existent element', () => {
