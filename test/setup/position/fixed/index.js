@@ -26,6 +26,35 @@ const positionFixedMarkup = `
       -ve right will not be visible
     </div>
   </div>
+
+  position: fixed 0 top
+  <div class="wrapper">
+    <div class="inline-block p-f t-0px">
+      0 top will be visible
+    </div>
+  </div>
+
+  position: fixed 0 bottom
+  <div class="wrapper">
+    <div class="inline-block p-f b-0px">
+      0 bottom will be visible
+    </div>
+  </div>
+
+  position: fixed 0 left
+  <div class="wrapper">
+    <div class="inline-block p-f l-0px t-0px">
+      0 left will be visible
+    </div>
+  </div>
+
+  position: fixed 0 right
+  <div class="wrapper">
+    <div class="inline-block p-f r-0px b-0px">
+      0 right will be visible
+    </div>
+  </div>
+
 `;
 
 const positionFixedWrapperNode = document.createElement('div');

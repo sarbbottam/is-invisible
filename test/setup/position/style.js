@@ -26,6 +26,22 @@ const positionStyle = `
   .r--9999px {
     right: -9999px;
   }
+
+  .t-0px {
+    top: 0px;
+  }
+
+  .b-0px {
+    bottom: 0px;
+  }
+
+  .l-0px {
+    left: 0px;
+  }
+
+  .r-0px {
+    right: 0px;
+  }
 `;
 
 const positionStyleNode = document.createElement('style');

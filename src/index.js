@@ -80,23 +80,26 @@ function isInvisible(element, options) {
     return true;
   }
 
-  if (
-    isInvisibleByFixedPosition(element)
-  ) {
-    return true;
+  // for fixed position
+  const rect = element.getBoundingClientRect();
+  if (isFixedPositioned(element)) {
+    if (
+      // element below the viewport
+      rect.top > window.innerHeight ||
+      // element above the viewport
+      rect.bottom < 0 ||
+      // element right of the viewport
+      rect.left > window.innerWidth ||
+      // element left of the viewport
+      rect.right < 0
+    ) {
+      return true;
+    }
+    return false;
   }
 
-  // add the parent's offset(Top/Left) to element's offset
-  if (element.offsetParent === parentNode) {
-    elementTop += parentTop;
-    elementBottom += parentTop;
-    elementLeft += parentLeft;
-    elementRight += parentLeft;
-  }
-
   if (
-    elementBottom < 0 ||
-    elementRight < 0
+    isInvisibleByOffsetPosition(element)
   ) {
     return true;
   }
@@ -121,14 +124,30 @@ function hasOverflow(node) {
     getStyle(node, 'overflow-y') === 'auto';
 }
 
-function isInvisibleByFixedPosition(node) {
+function isFixedPositioned(node) {
+  // return false for document node
+  if (node.nodeType === 9) {
+    return false;
+  }
+
+  if (getStyle(node, 'position') === 'fixed') {
+    return true;
+  }
+
+  return isFixedPositioned(node.parentNode);
+}
+
+function isInvisibleByOffsetPosition(node) {
+  // for absolute & relative position
+  const rect = node.getBoundingClientRect();
+  const position = getStyle(node, 'position');
   if (
-    getStyle(node, 'position') === 'fixed' &&
+    (position === 'relative' || position === 'absolute') &&
     (
-      parseInt(getStyle(node, 'top'), 10) < 0 ||
-      parseInt(getStyle(node, 'left'), 10) < 0 ||
-      parseInt(getStyle(node, 'right'), 10) < 0 ||
-      parseInt(getStyle(node, 'bottom'), 10) < 0
+      // element above the viewport
+      rect.bottom < 0 ||
+      // element left of the viewport
+      rect.right < 0
     )
   ) {
     return true;
